@@ -1,0 +1,6 @@
+name: Reassembly
+version: '${version}'
+main: me.artic.reassembly.Reassembly
+api-version: '26.2'
+description: Trial dev
+authors: [Artic]
