@@ -109,6 +109,4 @@ public class PortalManager {
             cooldowns.put(id, now);
         }
     }
-
-
 }

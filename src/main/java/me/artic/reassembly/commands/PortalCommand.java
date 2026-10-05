@@ -3,6 +3,7 @@ package me.artic.reassembly.commands;
 import lombok.RequiredArgsConstructor;
 import me.artic.reassembly.Reassembly;
 import me.artic.reassembly.object.Portal;
+import me.artic.reassembly.utils.CustomItem;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import revxrsal.commands.annotation.Command;
@@ -21,21 +22,23 @@ public class PortalCommand {
     @Subcommand("list")
     public void onList(Player player) {
         List<Portal> portals = this.plugin.getPortalManager().getPlayerPortals(player);
-        if(portals.isEmpty()){
-            player.sendRichMessage("<red>Nessun portale");
+        if (portals.isEmpty()) {
+            String msg = plugin.getMessages().getString("error.no-portals");
+            player.sendRichMessage(msg);
             return;
         }
-        player.sendRichMessage("<green>Hai " + portals.size() + " portali attivi");
+
+        String header = plugin.getMessages().getString("player.portal-list-header")
+                .replace("%count%", Integer.toString(portals.size()));
+        player.sendRichMessage(header);
+
         for (Portal p : portals) {
-            StringBuilder builder = new StringBuilder("<green>");
-            builder.append(p.getId());
-            builder.append(". ");
-            builder.append(loc(p.getLoc1()));
-            builder.append(" -> ");
-            builder.append(loc(p.getLoc2()));
+            String format = plugin.getMessages().getString("player.portal-list-format")
+                    .replace("%id%", Integer.toString(p.getId()))
+                    .replace("%loc1%", loc(p.getLoc1()))
+                    .replace("%loc2%", loc(p.getLoc2()));
 
-
-            player.sendRichMessage(builder.toString());
+            player.sendRichMessage(format);
         }
     }
 
@@ -43,7 +46,10 @@ public class PortalCommand {
     public void onDelete(Player player, @Range(min = 0) int id) {
         plugin.getPortalManager().removePortalFromPlayer(player, id);
 
-        player.sendRichMessage("<green>Hai eliminato il portale con id " + id + " (se esisteva)");
+        String del = plugin.getMessages().getString("player.portal-deleted")
+                .replace("%id%", Integer.toString(id));
+
+        player.sendRichMessage(del);
     }
 
     private String loc(Location location) {
@@ -51,5 +57,14 @@ public class PortalCommand {
                 + location.getX() + " "
                 + location.getY() + " "
                 + location.getZ();
+    }
+
+    @Subcommand("getwand")
+    public void getWand(Player player) {
+        CustomItem.PORTAL_WAND.give(player);
+        CustomItem.BLOCK_GRAFT.give(player); // DA RIMUOVERE
+
+        String msg = plugin.getMessages().getString("player.get-wand");
+        player.sendRichMessage(msg);
     }
 }

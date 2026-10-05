@@ -1,10 +1,10 @@
-package me.artic.reassembly.Listeners;
+package me.artic.reassembly.listeners;
 
 import lombok.RequiredArgsConstructor;
 import me.artic.reassembly.Reassembly;
 import me.artic.reassembly.object.Portal;
+import me.artic.reassembly.utils.CustomItem;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,9 +16,10 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
-public class ClickListener implements Listener {
+public class PortalClickListener implements Listener {
     private final Reassembly plugin;
     private Map<Player, Location> loc1 = new HashMap<>();
 
@@ -32,7 +33,10 @@ public class ClickListener implements Listener {
         ItemStack item = player.getInventory().getItemInMainHand();
         if (item == null) return;
 
-        if (item.getType() != Material.STICK) return;
+        Optional<String> itemId = CustomItem.getItemId(item);
+        if(itemId.isEmpty()) return;
+        // Da qua in poi sappiamo che l'oggetto è custom
+        if(!itemId.get().equalsIgnoreCase(CustomItem.PORTAL_WAND.id())) return;
 
         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();

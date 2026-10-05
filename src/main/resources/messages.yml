@@ -1,0 +1,11 @@
+admin:
+  reload: "<green>Plugin reloaded"
+
+error:
+  no-portals: "<red>No portals found!"
+
+player:
+  portal-list-header: "<green>You have %count% portals"
+  portal-list-format: "<green>%id%. %loc1% -> %loc2%"
+  portal-deleted: "<green>You deleted portal with id %id%"
+  get-wand: "<green>You got the portal wand"
