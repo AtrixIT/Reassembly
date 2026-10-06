@@ -59,12 +59,10 @@ public class PortalCommand {
                 + location.getZ();
     }
 
-    @Subcommand("getwand")
-    public void getWand(Player player) {
-        CustomItem.PORTAL_WAND.give(player);
-        CustomItem.BLOCK_GRAFT.give(player); // DA RIMUOVERE
-
-        String msg = plugin.getMessages().getString("player.get-wand");
+    @Subcommand("getPortal")
+    public void getPortal(Player player) {
+        CustomItem.PORTAL.give(player);
+        String msg = plugin.getMessages().getString("player.get-portal");
         player.sendRichMessage(msg);
     }
 }

@@ -1,6 +1,7 @@
 package me.artic.reassembly;
 
 import lombok.Getter;
+import me.artic.reassembly.commands.GraftCommand;
 import me.artic.reassembly.listeners.BlockGraftListener;
 import me.artic.reassembly.listeners.DropListener;
 import me.artic.reassembly.listeners.PortalClickListener;
@@ -35,6 +36,7 @@ public final class Reassembly extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new DropListener(), this);
 
         Lamp<BukkitCommandActor> lamp = BukkitLamp.builder(this).build();
+        lamp.register(new GraftCommand(this));
         lamp.register(new PortalCommand(this));
         lamp.register(new MainCommand(this));
 

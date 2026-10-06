@@ -8,8 +8,12 @@ player:
   portal-list-header: "<green>You have %count% portals"
   portal-list-format: "<green>%id%. %loc1% -> %loc2%"
   portal-deleted: "<green>You deleted portal with id %id%"
-  get-wand: "<green>You got the portal wand"
+  portal-create-1: "<green>You set the first position"
+  portal-create-2: "<green>You set the second position"
+  get-portal: "<green>You acquired the ability of Travel"
+  get-graft: "<green>You acquired the ability of Graft"
   block-selected: "<green>You choose %id% as the block to replicate"
   block-replicated: "<green>You replaced the block"
   mob-selected: "<green>You choose %id% as the mob to replicate>"
   mob-switched: "<green>You switched the mob"
+

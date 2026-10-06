@@ -18,29 +18,29 @@ import java.util.Optional;
 
 @UtilityClass
 public class CustomItem {
-    private static final ItemStack PORTAL_WAND_ITEM;
-    public static final ItemWrapper PORTAL_WAND;
+    private static final ItemStack PORTAL_ITEM;
+    public static final ItemWrapper PORTAL;
 
-    private static final ItemStack BLOCK_GRAFT_ITEM;
-    public static final ItemWrapper BLOCK_GRAFT;
+    private static final ItemStack GRAFT_ITEM;
+    public static final ItemWrapper GRAFT;
 
     static {
-        PORTAL_WAND_ITEM = ItemStack.of(Material.STICK);
-        PORTAL_WAND_ITEM.setData(DataComponentTypes.CUSTOM_NAME, component("<red>Portal Maker"));
-        PORTAL_WAND_ITEM.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
-        PORTAL_WAND_ITEM.setData(DataComponentTypes.LORE, lore("<gray>Click to", "<gray>make portals"));
+        PORTAL_ITEM = ItemStack.of(Material.STICK);
+        PORTAL_ITEM.setData(DataComponentTypes.CUSTOM_NAME, component("<red>Portal Maker"));
+        PORTAL_ITEM.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+        PORTAL_ITEM.setData(DataComponentTypes.LORE, lore("<gray>Click to", "<gray>make portals"));
 
-        PORTAL_WAND = new ItemWrapper(PORTAL_WAND_ITEM,  "portal_wand");
-        assignId(PORTAL_WAND);
+        PORTAL = new ItemWrapper(PORTAL_ITEM,  "portal_wand");
+        assignId(PORTAL);
 
 
-        BLOCK_GRAFT_ITEM = ItemStack.of(Material.HEART_OF_THE_SEA);
-        BLOCK_GRAFT_ITEM.setData(DataComponentTypes.CUSTOM_NAME, component("<red>Block Graft"));
-        BLOCK_GRAFT_ITEM.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
-        BLOCK_GRAFT_ITEM.setData(DataComponentTypes.LORE, lore("<gray>Click to", "<gray>graft a block"));
+        GRAFT_ITEM = ItemStack.of(Material.HEART_OF_THE_SEA);
+        GRAFT_ITEM.setData(DataComponentTypes.CUSTOM_NAME, component("<red>Block Graft"));
+        GRAFT_ITEM.setData(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+        GRAFT_ITEM.setData(DataComponentTypes.LORE, lore("<gray>Click to", "<gray>graft a block"));
 
-        BLOCK_GRAFT = new ItemWrapper(BLOCK_GRAFT_ITEM, "block_graft");
-        assignId(BLOCK_GRAFT);
+        GRAFT = new ItemWrapper(GRAFT_ITEM, "block_graft");
+        assignId(GRAFT);
     }
 
     private static Component component(String text) {

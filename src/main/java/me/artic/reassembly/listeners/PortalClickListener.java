@@ -35,16 +35,17 @@ public class PortalClickListener implements Listener {
         if (item == null) return;
 
         Optional<String> itemId = CustomItem.getItemId(item);
-        if(itemId.isEmpty()) return;
+        if (itemId.isEmpty()) return;
         // Da qua in poi sappiamo che l'oggetto è custom
-        if(!itemId.get().equalsIgnoreCase(CustomItem.PORTAL_WAND.id())) return;
+        if (!itemId.get().equalsIgnoreCase(CustomItem.PORTAL_WAND.id())) return;
 
         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
             Location loc = block.getLocation().clone().add(0.5, 1.5, 0.5);
 
             this.loc1.put(player, loc);
-            player.sendRichMessage("<green>Hai impostato la prima pos");
+            String pos1 = plugin.getMessages().getString("player.portal-create-1");
+            player.sendRichMessage(pos1);
             event.setCancelled(true);
         } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (!this.loc1.containsKey(player)) return;
@@ -69,7 +70,8 @@ public class PortalClickListener implements Listener {
             }
              */
 
-            player.sendRichMessage("<green>Portale creato!");
+            String pos2 = plugin.getMessages().getString("player.portal-create-2");
+            player.sendRichMessage(pos2);
             event.setCancelled(true);
         }
     }
