@@ -21,5 +21,4 @@ public class GraftCommand {
         String msg = plugin.getMessages().getString("player.get-graft");
         player.sendRichMessage(msg);
     }
-
 }
