@@ -23,8 +23,8 @@ public class PortalCommand {
     public void onList(Player player) {
         List<Portal> portals = this.plugin.getPortalManager().getPlayerPortals(player);
         if (portals.isEmpty()) {
-            String msg = plugin.getMessages().getString("error.no-portals");
-            player.sendRichMessage(msg);
+            String error = plugin.getMessages().getString("error.no-portals");
+            player.sendRichMessage(error);
             return;
         }
 

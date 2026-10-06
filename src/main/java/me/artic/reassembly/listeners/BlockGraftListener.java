@@ -15,7 +15,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -25,12 +24,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@SuppressWarnings("all")
 @RequiredArgsConstructor
 public class BlockGraftListener implements Listener {
     private final Reassembly plugin;
 
     private Map<Player, Material> blockGraft = new HashMap<>();
     private Map<Player, EntityType> mobGraft = new HashMap<>();
+
 
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
@@ -51,7 +52,9 @@ public class BlockGraftListener implements Listener {
             Block block = event.getClickedBlock();
             this.blockGraft.put(player, block.getType());
 
-            player.sendRichMessage("<green>Hai scelto il blocco");
+            String blockSelected = plugin.getMessages().getString("player.block-selected")
+                    .replace("%id%", block.getType().toString());
+            player.sendRichMessage(blockSelected);
             event.setCancelled(true);
         } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (!this.blockGraft.containsKey(player)) return;
@@ -61,7 +64,8 @@ public class BlockGraftListener implements Listener {
             BlockData data = Bukkit.createBlockData(this.blockGraft.get(player));
             loc.getWorld().setBlockData(loc, data);
 
-            player.sendRichMessage("<green>Blocco cambiato");
+            String blockReplicated = plugin.getMessages().getString("player.block-replicated");
+            player.sendRichMessage(blockReplicated);
             event.setCancelled(true);
         }
     }
@@ -91,6 +95,9 @@ public class BlockGraftListener implements Listener {
         entity.remove();
 
         loc.getWorld().spawn(loc, this.mobGraft.get(player).getEntityClass());
+
+        String mobSwitched = plugin.getMessages().getString("player.mob-switched");
+        player.sendRichMessage(mobSwitched);
     }
 
     @EventHandler
@@ -110,7 +117,9 @@ public class BlockGraftListener implements Listener {
 
         Entity victim = event.getEntity();
         this.mobGraft.put(player, victim.getType());
-        player.sendRichMessage("<green>Mob salvato");
+        String mob = plugin.getMessages().getString("player.mob-replicated")
+                .replace("%id%", victim.getType().toString());
+        player.sendRichMessage(mob);
     }
 
 }
