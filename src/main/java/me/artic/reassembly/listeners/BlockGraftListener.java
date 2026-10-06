@@ -36,7 +36,6 @@ public class BlockGraftListener implements Listener {
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (!player.isSneaking()) return;
 
         if (event.getHand() == EquipmentSlot.OFF_HAND) return;
 
@@ -46,7 +45,7 @@ public class BlockGraftListener implements Listener {
         Optional<String> itemId = CustomItem.getItemId(item);
         if(itemId.isEmpty()) return;
         // Da qua in poi sappiamo che l'oggetto è custom
-        if(!itemId.get().equalsIgnoreCase(CustomItem.BLOCK_GRAFT.id())) return;
+        if(!itemId.get().equalsIgnoreCase(CustomItem.GRAFT.id())) return;
 
         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
@@ -83,7 +82,7 @@ public class BlockGraftListener implements Listener {
         Optional<String> itemId = CustomItem.getItemId(item);
         if(itemId.isEmpty()) return;
         // Da qua in poi sappiamo che l'oggetto è custom
-        if(!itemId.get().equalsIgnoreCase(CustomItem.BLOCK_GRAFT.id())) return;
+        if(!itemId.get().equalsIgnoreCase(CustomItem.GRAFT.id())) return;
 
         event.setCancelled(true);
 
@@ -111,7 +110,7 @@ public class BlockGraftListener implements Listener {
         Optional<String> itemId = CustomItem.getItemId(item);
         if(itemId.isEmpty()) return;
         // Da qua in poi sappiamo che l'oggetto è custom
-        if(!itemId.get().equalsIgnoreCase(CustomItem.BLOCK_GRAFT.id())) return;
+        if(!itemId.get().equalsIgnoreCase(CustomItem.GRAFT.id())) return;
 
         event.setCancelled(true);
 

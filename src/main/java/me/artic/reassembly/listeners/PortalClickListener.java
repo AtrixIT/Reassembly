@@ -37,7 +37,7 @@ public class PortalClickListener implements Listener {
         Optional<String> itemId = CustomItem.getItemId(item);
         if (itemId.isEmpty()) return;
         // Da qua in poi sappiamo che l'oggetto è custom
-        if (!itemId.get().equalsIgnoreCase(CustomItem.PORTAL_WAND.id())) return;
+        if (!itemId.get().equalsIgnoreCase(CustomItem.PORTAL.id())) return;
 
         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
