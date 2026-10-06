@@ -29,7 +29,7 @@ import java.util.Optional;
 public class BlockGraftListener implements Listener {
     private final Reassembly plugin;
 
-    private Map<Player, Material> graft = new HashMap<>();
+    private Map<Player, Material> blockGraft = new HashMap<>();
     private Map<Player, EntityType> mobGraft = new HashMap<>();
 
     @EventHandler
@@ -49,16 +49,16 @@ public class BlockGraftListener implements Listener {
 
         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
             Block block = event.getClickedBlock();
-            this.graft.put(player, block.getType());
+            this.blockGraft.put(player, block.getType());
 
             player.sendRichMessage("<green>Hai scelto il blocco");
             event.setCancelled(true);
         } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            if (!this.graft.containsKey(player)) return;
+            if (!this.blockGraft.containsKey(player)) return;
 
             Block block = event.getClickedBlock();
             Location loc = block.getLocation();
-            BlockData data = Bukkit.createBlockData(this.graft.get(player));
+            BlockData data = Bukkit.createBlockData(this.blockGraft.get(player));
             loc.getWorld().setBlockData(loc, data);
 
             player.sendRichMessage("<green>Blocco cambiato");

@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import me.artic.reassembly.Reassembly;
 import me.artic.reassembly.object.Portal;
 import me.artic.reassembly.utils.CustomItem;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,7 +28,6 @@ public class PortalClickListener implements Listener {
     @EventHandler
     public void onClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        if (!player.isSneaking()) return;
 
         if (event.getHand() == EquipmentSlot.OFF_HAND) return;
 
@@ -57,6 +58,16 @@ public class PortalClickListener implements Listener {
 
             Portal portal = new Portal(player.getUniqueId().toString(), from, loc);
             this.plugin.getPortalManager().addPortal(portal);
+
+            /* Se voglio far diminuire l'oggetto a ogni utilizzo
+            if(player.getGameMode() != GameMode.CREATIVE) {
+                if(item.getAmount() <= 1) {
+                    player.getInventory().setItemInMainHand(ItemStack.of(Material.AIR));
+                } else {
+                    item.setAmount(item.getAmount() - 1);
+                }
+            }
+             */
 
             player.sendRichMessage("<green>Portale creato!");
             event.setCancelled(true);
