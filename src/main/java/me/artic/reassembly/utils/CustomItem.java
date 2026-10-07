@@ -44,7 +44,7 @@ public class CustomItem {
     }
 
     private static Component component(String text) {
-        return MiniMessage.miniMessage().deserialize(text).decoration(TextDecoration.ITALIC, false);
+        return MsgUtils.component(text);
     }
 
     private static ItemLore lore(String... lore) {

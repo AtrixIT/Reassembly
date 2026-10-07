@@ -1,11 +1,12 @@
 package me.artic.reassembly.commands;
 
-
 import lombok.RequiredArgsConstructor;
 import me.artic.reassembly.Reassembly;
+import me.artic.reassembly.guis.GraftGui;
 import me.artic.reassembly.utils.CustomItem;
 import org.bukkit.entity.Player;
 import revxrsal.commands.annotation.Command;
+import revxrsal.commands.annotation.CommandPlaceholder;
 import revxrsal.commands.annotation.Subcommand;
 import revxrsal.commands.bukkit.annotation.CommandPermission;
 
@@ -20,5 +21,11 @@ public class GraftCommand {
         CustomItem.GRAFT.give(player);
         String msg = plugin.getMessages().getString("player.get-graft");
         player.sendRichMessage(msg);
+    }
+
+    @CommandPlaceholder
+    public void onExecute(Player player) {
+        GraftGui gui = new GraftGui(player);
+        gui.open();
     }
 }

@@ -13,6 +13,9 @@ repositories {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
+    maven {
+        url 'https://repo.xenondevs.xyz/releases'
+    }
 }
 
 dependencies {
@@ -21,6 +24,7 @@ dependencies {
     annotationProcessor('org.projectlombok:lombok:1.18.48')
     implementation('io.github.revxrsal:lamp.common:4.0.0-rc.18')
     implementation('io.github.revxrsal:lamp.bukkit:4.0.0-rc.18')
+    implementation("xyz.xenondevs.invui:invui:2.3.2")
 }
 
 tasks {
@@ -37,6 +41,7 @@ tasks.assemble {
 tasks.shadowJar {
     archiveClassifier.set("")
     relocate "revxrsal", "me.artic.reassembly.libs.revxrsal"
+    relocate "xyz.xenondevs.invui", "me.artic.reassembly.libs.invui"
     minimize()
 }
 

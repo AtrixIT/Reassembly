@@ -13,7 +13,14 @@ player:
   get-portal: "<green>You acquired the ability of Travel"
   get-graft: "<green>You acquired the ability of Graft"
   block-selected: "<green>You choose %id% as the block to replicate"
-  block-replicated: "<green>You replaced the block"
-  mob-selected: "<green>You choose %id% as the mob to replicate>"
-  mob-switched: "<green>You switched the mob"
+  mob-selected: "<green>You choose %id% as the mob to replicate"
+
+action-bar:
+  current-graft: "<aqua>Graft: %graft%"
+
+gui:
+  graft:
+    title: "<black>Graft Selector"
+    item-name: "<green>Graft: %graft%"
+    item-name-selected: "<yellow><bold>Graft: %graft%"
 

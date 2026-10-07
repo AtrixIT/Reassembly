@@ -2,12 +2,13 @@ package me.artic.reassembly;
 
 import lombok.Getter;
 import me.artic.reassembly.commands.GraftCommand;
-import me.artic.reassembly.listeners.BlockGraftListener;
+import me.artic.reassembly.listeners.GraftListener;
 import me.artic.reassembly.listeners.DropListener;
 import me.artic.reassembly.listeners.PortalClickListener;
 import me.artic.reassembly.commands.MainCommand;
 import me.artic.reassembly.commands.PortalCommand;
-import me.artic.reassembly.object.PortalManager;
+import me.artic.reassembly.managers.GraftManager;
+import me.artic.reassembly.managers.PortalManager;
 import me.artic.reassembly.utils.Config;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,8 @@ public final class Reassembly extends JavaPlugin {
     private Config portals;
     @Getter
     private PortalManager portalManager;
+    @Getter
+    private GraftManager graftManager;
 
     private static int id = 0;
 
@@ -31,8 +34,10 @@ public final class Reassembly extends JavaPlugin {
         this.portals = new Config(this, "portals.yml");
 
         this.portalManager = new PortalManager(this);
+        this.graftManager = new GraftManager(this);
+
         this.getServer().getPluginManager().registerEvents(new PortalClickListener(this), this);
-        this.getServer().getPluginManager().registerEvents(new BlockGraftListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new GraftListener(this), this);
         this.getServer().getPluginManager().registerEvents(new DropListener(), this);
 
         Lamp<BukkitCommandActor> lamp = BukkitLamp.builder(this).build();
@@ -40,11 +45,15 @@ public final class Reassembly extends JavaPlugin {
         lamp.register(new PortalCommand(this));
         lamp.register(new MainCommand(this));
 
+        this.graftManager.start();
+
         this.getLogger().info("Reassembly: Enabled!");
     }
 
     @Override
     public void onDisable() {
+        this.graftManager.stop();
+
         this.getLogger().info("Reassembly: Disabled!");
     }
 
@@ -52,6 +61,8 @@ public final class Reassembly extends JavaPlugin {
         this.reloadConfig();
         this.messages.reload();
         this.portals.reload();
+
+        this.graftManager.reload();
 
         this.getLogger().info("Reassembly: Reloaded!");
     }

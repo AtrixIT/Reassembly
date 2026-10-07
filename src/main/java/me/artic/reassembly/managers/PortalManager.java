@@ -1,7 +1,8 @@
-package me.artic.reassembly.object;
+package me.artic.reassembly.managers;
 
 import lombok.RequiredArgsConstructor;
 import me.artic.reassembly.Reassembly;
+import me.artic.reassembly.object.Portal;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
