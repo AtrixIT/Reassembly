@@ -95,7 +95,6 @@ public class GraftListener implements Listener {
 
         } else if (event.getAction().isRightClick()) {
             GraftType nextType = plugin.getGraftManager().setNextGraft(player);
-            player.sendRichMessage("Graft impostato a " + type);
         }
     }
 
